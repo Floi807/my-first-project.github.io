@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Детали книги</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f0f0f0;
+      text-align: center;
+    }
+    h1 {
+      color: #333;
+    }
+    img {
+      max-width: 300px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      margin: 20px 0;
+    }
+    p {
+      max-width: 600px;
+      margin: 20px auto;
+      font-size: 16px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+    <div class="book-container">
+  <h1 id="title">Заголовок книги</h1>
+  <img id="cover" src="" alt="Обложка книги" />
+  <p id="description">Описание книги</p>
+  </div>
+
+  <script>
+    // Функция для получения параметров из URL
+    function getQueryParams() {
+      const params = {};
+      const queryString = window.location.search.substring(1);
+      const pairs = queryString.split('&');
+      for (let pair of pairs) {
+        const [key, value] = pair.split('=');
+        if (key && value) {
+          params[key] = decodeURIComponent(value.replace(/\+/g, ' '));
+        }
+      }
+      return params;
+    }
+
+    
+    const params = new URLSearchParams(window.location.search);
+    const title = params.get('title');
+    const description = params.get('description');
+    const img = params.get('img');
+
+    // Устанавливаем содержимое страницы
+    document.getElementById('title').textContent = decodeURIComponent(title || 'Без названия');
+    document.getElementById('description').textContent = decodeURIComponent(description || 'Описание отсутствует');
+    document.getElementById('cover').src = decodeURIComponent(img || '');
+    document.getElementById('cover').alt = decodeURIComponent(title || 'Обложка книги');
+  </script>
+</body>
+</html>
