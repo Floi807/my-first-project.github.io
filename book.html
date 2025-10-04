@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <title>Детали книги</title>
+  <meta charset="UTF-8">
+  <title>Книга</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -26,41 +26,87 @@
       font-size: 16px;
       color: #555;
     }
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
-    <div class="book-container">
   <h1 id="title">Заголовок книги</h1>
-  <img id="cover" src="" alt="Обложка книги" />
+  <img id="cover" src="" alt="Обложка книги">
   <p id="description">Описание книги</p>
-  </div>
+  <a id="read-link" class="btn" href="#" target="_blank">Читать онлайн</a>
 
   <script>
-    // Функция для получения параметров из URL
-    function getQueryParams() {
-      const params = {};
-      const queryString = window.location.search.substring(1);
-      const pairs = queryString.split('&');
-      for (let pair of pairs) {
-        const [key, value] = pair.split('=');
-        if (key && value) {
-          params[key] = decodeURIComponent(value.replace(/\+/g, ' '));
-        }
+    // "База данных" книг (JS-объект)
+    const books = {
+      python: {
+        title: "Легкий способ выучить Python",
+        description: "Описание книги по Python...",
+        img: "img/книга Легкий способ выучить Python.jpg",
+        link: "/Practic/media/books_pdfs/Легкий_способ_выучить_Python_3.pdf"
+      },
+      cpp: {
+        title: "Язык Программирования C++",
+        description: "Описание книги по C++...",
+        img: "img/книга Язык Программирования C++.jpg",
+        link: "/Practic/media/books_pdfs/Язык Программирования C++.pdf"
+      },
+      html: {
+        title: "HTML & XHTML. Подробное руководство",
+        description: "Описание книги по HTML и XHTML...",
+        img: "img/книга HTML & XHTML. Подробное руководство.jpg",
+        link: "/Practic/media/books_pdfs/HTML & XHTML. Подробное руководствоo 6 издание.pdf"
+      },
+      js: {
+        title: "Javascript и jQuery",
+        description: "Описание книги по Javascript и jQuery...",
+        img: "img/книга Javascript и jQuery.jpg",
+        link: "/Practic/media/books_pdfs/Javascript и jQuery.pdf"
+      },
+      css: {
+        title: "HTML и CSS",
+        description: "Описание книги по HTML и CSS...",
+        img: "img/CSS.jpg",
+        link: "/Practic/media/books_pdfs/HTML_и_CSS_разработка.pdf"
+      },
+      java: {
+        title: "Программирование на Java для начинающих",
+        description: "Описание книги по Java...",
+        img: "img/Java.jpg",
+        link: "/Practic/media/books_pdfs/Программирование на Java для начинающих.pdf"
       }
-      return params;
-    }
+    };
 
-    
+    // Получаем ID книги из URL
     const params = new URLSearchParams(window.location.search);
-    const title = params.get('title');
-    const description = params.get('description');
-    const img = params.get('img');
+    const bookId = params.get("id");
 
-    // Устанавливаем содержимое страницы
-    document.getElementById('title').textContent = decodeURIComponent(title || 'Без названия');
-    document.getElementById('description').textContent = decodeURIComponent(description || 'Описание отсутствует');
-    document.getElementById('cover').src = decodeURIComponent(img || '');
-    document.getElementById('cover').alt = decodeURIComponent(title || 'Обложка книги');
+    // Проверяем и отображаем данные
+    if (bookId && books[bookId]) {
+      const book = books[bookId];
+      document.getElementById("title").textContent = book.title;
+      document.getElementById("description").textContent = book.description;
+      document.getElementById("cover").src = book.img;
+      document.getElementById("cover").alt = book.title;
+      document.getElementById("read-link").href = book.link;
+    } else {
+      document.getElementById("title").textContent = "Книга не найдена";
+      document.getElementById("description").textContent = "";
+      document.getElementById("cover").style.display = "none";
+      document.getElementById("read-link").style.display = "none";
+    }
   </script>
 </body>
 </html>
+
