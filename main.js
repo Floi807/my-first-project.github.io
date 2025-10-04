@@ -28,19 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-document.querySelectorAll('.book img').forEach(img => {
-  img.addEventListener('click', () => {
-    const title = encodeURIComponent(img.dataset.title);
-    const description = encodeURIComponent(img.dataset.description);
-    const imgSrc = encodeURIComponent(img.dataset.img);
-
-    const url = `book.html?title=${title}&description=${description}&img=${imgSrc}`;
-    window.open(url, '_blank');
-  });
-});
-
-
-
 
 
 
