@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <title>Детали книги</title>
+  <meta charset="UTF-8">
+  <title>Легкий способ выучить Python</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
-      background-color: #f0f0f0;
+      background-color: #f9f9f9;
       text-align: center;
     }
+
     h1 {
       color: #333;
     }
+
     img {
       max-width: 300px;
       height: auto;
@@ -20,12 +22,14 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
       margin: 20px 0;
     }
+
     p {
       max-width: 600px;
       margin: 20px auto;
       font-size: 16px;
       color: #555;
     }
+
     .btn {
       display: inline-block;
       margin-top: 20px;
@@ -36,33 +40,67 @@
       border-radius: 5px;
       transition: background-color 0.3s ease;
     }
+
     .btn:hover {
       background-color: #0056b3;
     }
+
+    /* Новый контейнер */
+    .description-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .description {
+      width: 500px;
+      text-align: left;
+      padding: 15px;
+      box-shadow: 5px 5px 10px 10px rgba(0, 0, 0, 0.2);
+      margin-top: 15px;
+      background-color: white;
+    }
+
+  
+    .description h2 {
+      text-align: center;
+      color: #000;
+    }
+
+    .description p {
+      color: #333;
+      font-size: 14px;
+    }
+
   </style>
 </head>
 <body>
-  <h1 id="title">Заголовок книги</h1>
-  <img id="cover" src="" alt="Обложка книги" />
-  <p id="description">Описание книги</p>
-  <a id="read-link" class="btn" href="#" target="_blank">Читать онлайн</a>
+  <h1>Легкий способ выучить Python</h1>
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
+  <img src="img/книга Легкий способ выучить Python.jpg" alt="Обложка книги">
 
-    const title = params.get("title");
-    const description = params.get("description");
-    const img = params.get("img");
-    const link = params.get("link");
+  <p>Описание книги по Python...</p>
 
-    if (title) document.getElementById("title").textContent = decodeURIComponent(title);
-    if (description) document.getElementById("description").textContent = decodeURIComponent(description);
-    if (img) document.getElementById("cover").src = decodeURIComponent(img);
-    if (link) {
-      const a = document.getElementById("read-link");
-      a.href = decodeURIComponent(link);
-    }
-  </script>
+  <!-- Центрируем всё -->
+  <div class="description-wrapper">
+    <button onclick="this.nextElementSibling.hidden ^= 1">☰ Описание</button>
+    <nav class="description" id="nav-python" hidden>
+      <h2>Книга Легкий способ выучить Python:</h2>
+      <p>
+        Новая книга автора знаменитого бестселлера-самоучителя «Легкий способ выучить Python» (основана на примерах из Python-2),
+        Зеда Шоу, поможет вам с не меньшей легкостью освоить Python-3. 
+        Как и прежде, автор использует свою уникальную методику обучения, ставшую его визитной карточкой:
+        тщательно отобранные и проверенные тысячами людей практические примеры, подкрепленные видеоуроками, 
+        размещенными на авторском сайте, и легкий юмор, поднимающий читателям настроение и позволяющий поверить в себя.
+      </p>
+    </nav>
+  </div>
+
+  <br><br>
+  <a class="btn" href="/Practic/media/books_pdfs/Легкий_способ_выучить_Python_3.pdf">Читать онлайн</a>
 </body>
 </html>
+
 
